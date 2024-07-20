@@ -1,25 +1,31 @@
-function sliceMaxLength(elem, maxLength) {
-	elem.value = elem.value.slice(0, maxLength);
-}
-
-function comma(num) {
-	const price = String(num).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,');
-	return price;
-};
-
+// 初期設定
 const initial_base = 30000;
 const initial_rate = 5;
 const initial_duration = $('#duration').val();
 
+// 入力値に桁数制限を設ける
+function sliceMaxLength(elem, maxLength) {
+	elem.value = elem.value.slice(0, maxLength);
+}
+
+// 試算結果の数値をカンマ区切りにする
+function comma(num) {
+	const price = String(num).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,');
+	return price;
+}
+
+// 初期値をformタグの値としてセット
 $('#base').val(initial_base);
 $('#rate').val(initial_rate);
 
+// シミュレーション結果を自動計算および出力
 let base = initial_base;
 let rate = initial_rate;
 let duration = initial_duration;
 
 let invest = 0;
 let sum = 0
+
 function resultCalc() {
 	invest = 0;
 	sum = 0
@@ -33,6 +39,7 @@ function resultCalc() {
 }
 resultCalc();
 
+// HTML内の各種ボタンが押された時の処理
 $(function() {
 	$('#baseSub').on('click', function() {
 		$('#result').empty();
